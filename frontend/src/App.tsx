@@ -21,19 +21,24 @@ export function App() {
       <header className="py-2">
         <div className="max-w-4xl mx-auto px-3">
           <div className="flex justify-end items-center">
-            <a href="#" className="text-tertiary font-medium p-2">
+            <a
+              href="#"
+              className="text-tertiary hover:underline font-medium p-2"
+            >
               Eng
             </a>
-            <a href="#" className="font-medium p-2">
+            <a
+              href="#"
+              className="hover:underline font-medium p-2"
+            >
               Укр
             </a>
           </div>
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-3">
-        {/* Main content */}
-        <div className="lg:grid lg:grid-cols-2 gap-8">
+      <div className="max-w-4xl mx-auto px-3 mb-2 md:mb-4">
+        <div className="lg:grid lg:grid-cols-2 gap-8 items-start">
           {/* Left column - Payment form */}
           <div className="p-6 lg:p-8">
             {/* Back button and title */}
@@ -169,53 +174,54 @@ export function App() {
             </div>
           </div>
 
-          {/* Right column - Order summary */}
-          <div className="bg-gray-50 p-3 pt-4 lg:p-8">
-            <div className="lg:max-w-md lg:ml-auto">
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-xl font-medium text-gray-800">
-                    Order info &lt;= 100 char.
-                  </h2>
-                  <p className="text-gray-600 mt-2">
-                    Description &lt;= 400 char.
-                  </p>
-                </div>
+          <div className="bg-background-secondary p-3 pt-4 lg:p-8 rounded-lg">
+            <div className="space-y-4 md:space-y-6">
+              <h2 className="text-lg font-semibold">
+                Order info &lt;= 100 char.
+              </h2>
 
-                <div className="border-t border-b border-gray-200 py-4">
+              <div className="space-y-4">
+                <p className="font-medium text-sm">
+                  Description &lt;= 400 char.
+                </p>
+
+                <div className="border-t border-b border-border py-4">
                   <div className="space-y-1">
-                    <h3 className="font-medium text-gray-800">
+                    <h3 className="font-medium text-sm">
                       Lamel Professional Smart Skin Compact Powder
                     </h3>
-                    <p className="text-gray-500">Пудра для обличчя</p>
+                    <p className="text-muted-foreground text-xs">
+                      Пудра для обличчя
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-800 font-medium md:hidden">
-                    Total
-                  </span>
-                  <span className="text-xl font-medium text-gray-800">
-                    <span className="hidden md:inline">Total </span>
-                    299.99 UAH
-                    <span className="text-gray-600 text-base ml-1 hidden sm:inline">
-                      /&nbsp;month
+                <div className="text-right">
+                  <span className="font-medium md:hidden">Total</span>
+                  <span className="font-medium">
+                    <span className="text-sm hidden font-medium md:inline">
+                      Total{" "}
                     </span>
+                    <span className="font-semibold">299.99 UAH</span>
+                    <span className="xs:hidden font-medium">/&nbsp;month</span>
                   </span>
                 </div>
 
-                {/* Mobile-only duplicate of free trial info */}
-                <div className="md:hidden border-t border-gray-200 pt-4">
-                  <p className="font-medium text-gray-800">5 days free</p>
-                  <p className="text-gray-600">then 299.99 UAH per 14 days</p>
+                <div className="md:hidden text-right">
+                  <p className="font-semibold">5 days free</p>
+                  <p className="text-sm">then 299.99 UAH per 14 days</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer className="p-6 text-center text-gray-500 border-t border-gray-200">
-        Powered by <span className="font-medium text-gray-700">DUOMO</span>
+      <footer className="py-6">
+        <div className="max-w-4xl mx-auto px-3">
+          <p className="text-center text-foreground-secondary text-sm">
+            Powered by <span className="font-medium">DUOMO</span>
+          </p>
+        </div>
       </footer>
     </>
   );
