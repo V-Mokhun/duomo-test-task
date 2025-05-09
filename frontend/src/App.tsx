@@ -1,14 +1,13 @@
 import { ArrowLeft, InfoIcon } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
-import { Icon } from "./shared/ui";
+import { Icon } from "@/shared/ui";
 
 export function App() {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvc, setCvc] = useState("");
 
-  // Format card number with spaces
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\s/g, "");
     if (value.length <= 16 && /^\d*$/.test(value)) {
