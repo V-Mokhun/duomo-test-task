@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --breakpoint-xs: 452px;
+
   --color-primary: hsl(220 100% 54%);
   --color-primary-hover: hsl(219 97% 62%);
   --color-primary-active: hsl(219 85% 45%);
