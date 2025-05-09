@@ -1,14 +1,24 @@
 import { z } from "zod";
 
 export const checkoutFormSchema = z.object({
-  cardNumber: z.string().length(16, {
-    message: "Invalid card number",
-  }),
+  cardNumber: z.string().refine(
+    (val) => {
+      return val.replace(/\s/g, "").length === 16;
+    },
+    {
+      message: "Invalid card number",
+    }
+  ),
   expiryDate: z
     .string()
-    .length(5, {
-      message: "Invalid expiry date",
-    })
+    .refine(
+      (val) => {
+        return val.replace(/\s/g, "").length === 5;
+      },
+      {
+        message: "Invalid expiry date",
+      }
+    )
     .refine(
       (val) => {
         const [month, year] = val.split("/");
@@ -25,9 +35,14 @@ export const checkoutFormSchema = z.object({
         message: "Invalid expiry date",
       }
     ),
-  cvc: z.string().length(3, {
-    message: "Invalid CVC",
-  }),
+  cvc: z.string().refine(
+    (val) => {
+      return val.replace(/\s/g, "").length === 3;
+    },
+    {
+      message: "Invalid CVC",
+    }
+  ),
 });
 
 export type CheckoutFormSchema = z.infer<typeof checkoutFormSchema>;
