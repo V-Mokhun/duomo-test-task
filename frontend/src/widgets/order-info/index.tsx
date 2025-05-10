@@ -22,7 +22,7 @@ export const OrderInfo = () => {
             <span className="xs:hidden">/&nbsp;month</span>
           </div>
 
-          <div className="hidden xs:block lg:hidden text-right">
+          <div className="hidden xs:block text-right">
             <p className="font-semibold">5 days free</p>
             <p className="text-sm">then 299.99 UAH per 14 days</p>
           </div>

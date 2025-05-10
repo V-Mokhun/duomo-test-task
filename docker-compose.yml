@@ -1,0 +1,18 @@
+services:
+  api:
+    restart: always
+    container_name: api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env.local
+    ports:
+      - 8000:8000
+    networks:
+      - backend
+    command: ["npm", "run", "start"]
+
+networks:
+  backend:
+    driver: bridge
