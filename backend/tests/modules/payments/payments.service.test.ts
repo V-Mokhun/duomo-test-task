@@ -1,5 +1,5 @@
-import * as paymentsService from "./payments.service";
-import { CARD_ERROR_CODES } from "./payments.types";
+import * as paymentsService from "@/modules/payments/payments.service";
+import { CARD_ERROR_CODES } from "@/modules/payments/payments.types";
 import { describe, expect, it } from "@jest/globals";
 
 describe("validateCard", () => {

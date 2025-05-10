@@ -1,7 +1,7 @@
-import * as paymentsController from "./payments.controller";
-import * as service from "./payments.service";
-import { jest, describe, afterEach, expect, it } from "@jest/globals";
-import { CARD_ERROR_CODES } from "./payments.types";
+import * as paymentsController from "@/modules/payments/payments.controller";
+import * as paymentsService from "@/modules/payments/payments.service";
+import { CARD_ERROR_CODES } from "@/modules/payments/payments.types";
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 
 const mockResponse = () => {
   const res: any = {};
@@ -16,7 +16,9 @@ describe("validateCard", () => {
   });
 
   it("should return 200 and valid:true for valid card", () => {
-    jest.spyOn(service, "validateCard").mockReturnValue({ valid: true });
+    jest
+      .spyOn(paymentsService, "validateCard")
+      .mockReturnValue({ valid: true });
     const req = {
       body: {
         cardNumber: "4111111111111111",
@@ -43,7 +45,7 @@ describe("validateCard", () => {
   });
 
   it("should return 200 and error for invalid card", () => {
-    jest.spyOn(service, "validateCard").mockReturnValue({
+    jest.spyOn(paymentsService, "validateCard").mockReturnValue({
       valid: false,
       error: {
         code: CARD_ERROR_CODES.INVALID_CARD_NUMBER.code,
@@ -67,7 +69,7 @@ describe("validateCard", () => {
 
   it("should return 500 on unexpected error", () => {
     jest.spyOn(console, "error").mockImplementation(() => {});
-    jest.spyOn(service, "validateCard").mockImplementation(() => {
+    jest.spyOn(paymentsService, "validateCard").mockImplementation(() => {
       throw new Error("fail");
     });
     const req = {
