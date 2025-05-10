@@ -1,11 +1,33 @@
 import { ApplePayButton } from "@/shared/ui";
 import { ArrowLeft } from "lucide-react";
-import { CheckoutForm, Footer, Header, OrderInfo } from "./widgets";
+import { toast } from "sonner";
+import { paymentsService } from "./shared/api";
 import type { CheckoutFormSchema } from "./widgets";
+import { CheckoutForm, Footer, Header, OrderInfo } from "./widgets";
 
 export function App() {
-  const handleSubmit = (data: CheckoutFormSchema) => {
-    console.log(data);
+  const handleSubmit = async (
+    data: CheckoutFormSchema,
+    resetForm: () => void
+  ) => {
+    try {
+      const response = await paymentsService.validateCard({
+        cardNumber: data.cardNumber,
+        expirationMonth: data.expiryDate.split("/")[0],
+        expirationYear: data.expiryDate.split("/")[1],
+      });
+
+      if (response.error) {
+        toast.error(response.error.message);
+        return;
+      }
+
+      toast.success("Card validated successfully!");
+      resetForm();
+    } catch (error) {
+      console.error(error);
+      toast.error("Error validating card. Please try again.");
+    }
   };
 
   return (

@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
-import { validateCard } from "./card-validation.service";
-import { CardValidationRequest } from "./card-validation.types";
+import { validateCard } from "./payments.service";
+import { CardRequest } from "./payments.types";
 
-export const validateCardController = (req: Request, res: Response): void => {
+export const cardController = (req: Request, res: Response): void => {
   try {
+    console.log(req.body);
     const { cardNumber, expirationMonth, expirationYear } =
-      req.body as CardValidationRequest;
+      req.body as CardRequest;
 
     if (!cardNumber || !expirationMonth || !expirationYear) {
       res.status(400).json({

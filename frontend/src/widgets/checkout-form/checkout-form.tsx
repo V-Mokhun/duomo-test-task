@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { checkoutFormSchema, type CheckoutFormSchema } from "./schema";
 
 interface CheckoutFormProps {
-  onSubmit: (data: CheckoutFormSchema) => void;
+  onSubmit: (data: CheckoutFormSchema, resetForm: () => void) => void;
 }
 
 export const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
@@ -27,19 +27,26 @@ export const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
     },
   });
 
+  const handleSubmit = (data: CheckoutFormSchema) => {
+    onSubmit(data, form.reset);
+  };
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 mb-2">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-3 mb-2"
+      >
         <FormField
           control={form.control}
           name="cardNumber"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex flex-col h-full">
               <FormLabel>Card Number</FormLabel>
               <FormControl>
                 <InputMask
-                  mask="0000 0000 0000 0000"
-                  replacement={{ 0: /\d/ }}
+                  mask="____ ____ ____ ____"
+                  replacement={{ _: /\d/ }}
                   placeholder="1234 1234 1234 1234"
                   {...field}
                   component={Input}
@@ -54,12 +61,12 @@ export const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
             control={form.control}
             name="expiryDate"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex flex-col h-full">
                 <FormLabel>Expiration Date</FormLabel>
                 <FormControl>
                   <InputMask
-                    mask="00/00"
-                    replacement={{ 0: /\d/ }}
+                    mask="__/__"
+                    replacement={{ _: /\d/ }}
                     placeholder="MM/YY"
                     {...field}
                     component={Input}
@@ -74,13 +81,14 @@ export const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
             control={form.control}
             name="cvc"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex flex-col h-full">
                 <FormLabel>CVC</FormLabel>
                 <FormControl>
                   <div className="relative">
                     <InputMask
-                      mask="000"
-                      replacement={{ 0: /\d/ }}
+                      type="password"
+                      mask="___"
+                      replacement={{ _: /\d/ }}
                       placeholder="•••"
                       {...field}
                       component={Input}

@@ -1,4 +1,4 @@
-export interface CardValidationRequest {
+export interface CardRequest {
   cardNumber: string;
   expirationMonth: string;
   expirationYear: string;
@@ -9,12 +9,12 @@ export interface ValidationError {
   message: string;
 }
 
-export interface CardValidationResponse {
+export interface CardResponse {
   valid: boolean;
   error?: ValidationError;
 }
 
-export const CARD_VALIDATION_ERROR_CODES = {
+export const CARD_ERROR_CODES = {
   INVALID_CARD_NUMBER: "001",
   INVALID_EXPIRATION_DATE: "002",
   EXPIRED_CARD: "003",
