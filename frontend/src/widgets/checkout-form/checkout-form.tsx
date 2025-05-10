@@ -1,4 +1,5 @@
 import {
+  Button,
   Form,
   FormControl,
   FormField,
@@ -9,15 +10,16 @@ import {
 } from "@/shared/ui";
 import { InputMask } from "@react-input/mask";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { InfoIcon } from "lucide-react";
+import { InfoIcon, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { checkoutFormSchema, type CheckoutFormSchema } from "./schema";
 
 interface CheckoutFormProps {
   onSubmit: (data: CheckoutFormSchema, resetForm: () => void) => void;
+  isLoading?: boolean;
 }
 
-export const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
+export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
   const form = useForm<CheckoutFormSchema>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
@@ -104,13 +106,13 @@ export const CheckoutForm = ({ onSubmit }: CheckoutFormProps) => {
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors text-white py-3 px-4 rounded-md font-medium cursor-pointer"
-        >
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? (
+            <Loader2 className="h-5 w-5 animate-spin inline-flex items-center justify-center mr-2" />
+          ) : null}
           <span className="hidden lg:inline">Pay 299.99 UAH</span>
           <span className="lg:hidden">Start Trial</span>
-        </button>
+        </Button>
       </form>
     </Form>
   );

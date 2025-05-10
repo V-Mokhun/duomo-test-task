@@ -4,13 +4,17 @@ import { toast } from "sonner";
 import { paymentsService } from "./shared/api";
 import type { CheckoutFormSchema } from "./widgets";
 import { CheckoutForm, Footer, Header, OrderInfo } from "./widgets";
+import { useState } from "react";
 
 export function App() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (
     data: CheckoutFormSchema,
     resetForm: () => void
   ) => {
     try {
+      setIsLoading(true);
       const response = await paymentsService.validateCard({
         cardNumber: data.cardNumber,
         expirationMonth: data.expiryDate.split("/")[0],
@@ -22,11 +26,13 @@ export function App() {
         return;
       }
 
-      toast.success("Card validated successfully!");
+      toast.success("Checkout successful!");
       resetForm();
     } catch (error) {
       console.error(error);
-      toast.error("Error validating card. Please try again.");
+      toast.error("Error validating card. Please try again later.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,7 +67,7 @@ export function App() {
                 <div className="flex-grow border-t border-divider"></div>
               </div>
 
-              <CheckoutForm onSubmit={handleSubmit} />
+              <CheckoutForm onSubmit={handleSubmit} isLoading={isLoading} />
 
               <div className="py-3 px-4 rounded-lg border border-divider text-xs lg:text-sm text-foreground-secondary">
                 <p>

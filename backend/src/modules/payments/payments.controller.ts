@@ -4,7 +4,6 @@ import { CardRequest } from "./payments.types";
 
 export const cardController = (req: Request, res: Response): void => {
   try {
-    console.log(req.body);
     const { cardNumber, expirationMonth, expirationYear } =
       req.body as CardRequest;
 

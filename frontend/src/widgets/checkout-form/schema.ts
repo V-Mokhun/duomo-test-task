@@ -26,10 +26,19 @@ export const checkoutFormSchema = z.object({
         const currentYear = currentDate.getFullYear() % 100;
         const currentMonth = currentDate.getMonth() + 1;
 
-        return (
-          parseInt(year) > currentYear ||
-          (parseInt(year) === currentYear && parseInt(month) >= currentMonth)
-        );
+        if (parseInt(month) > 12 || parseInt(month) < 1) {
+          return false;
+        }
+
+        if (parseInt(year) < currentYear) {
+          return false;
+        }
+
+        if (parseInt(year) === currentYear && parseInt(month) < currentMonth) {
+          return false;
+        }
+
+        return true;
       },
       {
         message: "Invalid expiry date",
