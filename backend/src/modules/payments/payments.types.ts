@@ -15,7 +15,16 @@ export interface CardResponse {
 }
 
 export const CARD_ERROR_CODES = {
-  INVALID_CARD_NUMBER: "001",
-  INVALID_EXPIRATION_DATE: "002",
-  EXPIRED_CARD: "003",
+  INVALID_CARD_NUMBER: {
+    code: "001",
+    message: "Invalid card number",
+  },
+  INVALID_EXPIRATION_DATE: {
+    code: "002",
+    message: "Invalid expiration date",
+  },
+  EXPIRED_CARD: {
+    code: "003",
+    message: "Card has expired",
+  },
 } as const;

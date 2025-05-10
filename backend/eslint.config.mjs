@@ -3,7 +3,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["dist/**/*"],
+    ignores: ["dist/**/*", "jest.config.js"],
   },
   eslint.configs.recommended,
   tseslint.configs.recommended,
@@ -21,6 +21,7 @@ export default tseslint.config(
           ignoreRestSiblings: true,
         },
       ],
+      "@typescript-eslint/no-explicit-any": "off",
     },
   }
 );

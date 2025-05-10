@@ -7,8 +7,8 @@ export const validateCard = (card: CardRequest): CardResponse => {
     return {
       valid: false,
       error: {
-        code: CARD_ERROR_CODES.INVALID_CARD_NUMBER,
-        message: "Invalid card number",
+        code: CARD_ERROR_CODES.INVALID_CARD_NUMBER.code,
+        message: CARD_ERROR_CODES.INVALID_CARD_NUMBER.message,
       },
     };
   }
@@ -22,8 +22,8 @@ export const validateCard = (card: CardRequest): CardResponse => {
     return {
       valid: false,
       error: {
-        code: CARD_ERROR_CODES.INVALID_EXPIRATION_DATE,
-        message: "Invalid expiration date",
+        code: CARD_ERROR_CODES.INVALID_EXPIRATION_DATE.code,
+        message: CARD_ERROR_CODES.INVALID_EXPIRATION_DATE.message,
       },
     };
   }
@@ -32,8 +32,8 @@ export const validateCard = (card: CardRequest): CardResponse => {
     return {
       valid: false,
       error: {
-        code: CARD_ERROR_CODES.EXPIRED_CARD,
-        message: "Card has expired",
+        code: CARD_ERROR_CODES.EXPIRED_CARD.code,
+        message: CARD_ERROR_CODES.EXPIRED_CARD.message,
       },
     };
   }

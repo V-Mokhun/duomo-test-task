@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { validateCard } from "./payments.service";
+import * as paymentsService from "./payments.service";
 import { CardRequest } from "./payments.types";
 
-export const cardController = (req: Request, res: Response): void => {
+export const validateCard = (req: Request, res: Response): void => {
   try {
     const { cardNumber, expirationMonth, expirationYear } =
       req.body as CardRequest;
@@ -18,7 +18,7 @@ export const cardController = (req: Request, res: Response): void => {
       return;
     }
 
-    const validationResult = validateCard({
+    const validationResult = paymentsService.validateCard({
       cardNumber,
       expirationMonth,
       expirationYear,
