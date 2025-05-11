@@ -1,5 +1,5 @@
 import request from "supertest";
-// Tests pass successfully, relative imports work but vscode doesnt pick up the types. Tried to fix but no luck. Decided to leave as is because it took too long ;)
+//? Tests pass successfully, relative imports work but vscode doesnt pick up the types. Tried to fix but no luck. Decided to leave as is because it took too long ;)
 import { app } from "@/app";
 import { describe, it, expect } from "@jest/globals";
 
