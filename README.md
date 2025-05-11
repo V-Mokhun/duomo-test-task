@@ -4,7 +4,8 @@ This project consists of a backend API (Express) and a frontend (React) applicat
 
 ## Prerequisites
 
-- pnpm [https://pnpm.io/installation](https://pnpm.io/installation)
+- pnpm (optional) [https://pnpm.io/installation](https://pnpm.io/installation)
+- Docker [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
 ## Backend Setup
 

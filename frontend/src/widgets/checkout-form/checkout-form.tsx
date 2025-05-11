@@ -7,6 +7,10 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from "@/shared/ui";
 import { InputMask } from "@react-input/mask";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -95,9 +99,24 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
                       {...field}
                       component={Input}
                     />
-                    <button className="absolute right-3 top-1/2 -translate-y-1/2 text-tertiary">
-                      <InfoIcon className="h-5 w-5" />
-                    </button>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            type="button"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-tertiary"
+                          >
+                            <InfoIcon className="h-5 w-5" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-52">
+                          <p>
+                            The CVC is the last 3 digits on the back of your
+                            card.
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </div>
                 </FormControl>
                 <FormMessage />
